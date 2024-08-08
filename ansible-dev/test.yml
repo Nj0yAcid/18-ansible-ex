@@ -1,0 +1,13 @@
+- hosts: ws
+  become: true
+  vars:
+    packages:
+      - vim
+      - git
+      - curl
+  tasks:
+    - name: Install packages
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ packages }}"

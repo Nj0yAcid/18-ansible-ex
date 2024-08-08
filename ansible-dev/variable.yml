@@ -1,0 +1,21 @@
+---
+- hosts: ws
+  become: yes
+  vars: 
+    package: vim,docker
+    packages: ['unzip', 'wget']
+  
+  tasks:
+  - name: install vim & docker
+    yum: name={{package}} state=latest
+  
+  - name: Install Package
+    yum: name={{ item }} state=latest
+    with_items: packages
+
+
+  - name: install git & jenkins
+    yum: name={{item}} state=latest
+    with_items: 
+      - git
+      - java-17
